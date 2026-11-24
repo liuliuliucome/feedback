@@ -1,16 +1,10 @@
-# Misc
-*.log
-npm-debug.*
-*.scssc
-*.swp
-.DS_Store
-Thumbs.db
-.sass-cache
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.dev.vars.*
 .env
-.cache
-
-# Node modules and output
-node_modules
-dist
-src/_includes/css
-src/_includes/js
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo

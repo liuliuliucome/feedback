@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  background: #f7f9fb;
+  color: #202c38;
+}
+.center,
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login {
+  background:
+    radial-gradient(ellipse at 20% 20%, #e2f4ef, transparent 55%), #f7f9fb;
+  padding: 20px;
+}
+.brand-icon {
+  background: #127a68;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: none;
+  text-align: left;
+  color: #536170;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+.nav:hover {
+  background: #f4f6f8;
+}
+.nav.active {
+  background: #e7f4ef;
+  color: #137a66;
+}
+.sidebar-bottom {
+  margin-top: auto;
+}
+.workspace {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 10px 12px 50px;
+}
+.ticket-link {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #253443;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+.ticket-link:hover {
+  color: #147c69;
+  text-decoration: underline;
+}
+.empty {
+  padding: 64px 20px;
+  text-align: center;
+  color: #637180;
+}
+thead {
+  background: #fafbfc;
+}
+th {
+  color: #536170 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+@media (max-width: 48em) {
+  .workspace {
+    padding: 0;
+  }
+  .mantine-AppShell-main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .mantine-Group-root {
+    row-gap: 16px;
+  }
+}

@@ -1,0 +1,10 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE staff (id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, password TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('admin','agent')), active INTEGER NOT NULL DEFAULT 1, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE sessions (token TEXT PRIMARY KEY, staff_id TEXT NOT NULL REFERENCES staff(id), expires INTEGER NOT NULL);
+CREATE TABLE installations (id TEXT PRIMARY KEY, token TEXT NOT NULL UNIQUE, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE tickets (id TEXT PRIMARY KEY, installation_id TEXT NOT NULL REFERENCES installations(id), title TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'waiting_staff' CHECK(status IN ('waiting_staff','waiting_user','closed')), device TEXT NOT NULL DEFAULT '', assigned_to TEXT REFERENCES staff(id), created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX tickets_owner ON tickets(installation_id,updated_at);
+CREATE INDEX tickets_status ON tickets(status,updated_at);
+CREATE TABLE messages (id TEXT PRIMARY KEY, ticket_id TEXT NOT NULL REFERENCES tickets(id), sender TEXT NOT NULL CHECK(sender IN ('user','staff')), author TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE INDEX messages_ticket ON messages(ticket_id,created_at);
+CREATE TABLE attachments (id TEXT PRIMARY KEY, message_id TEXT NOT NULL REFERENCES messages(id), name TEXT NOT NULL, size INTEGER NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
